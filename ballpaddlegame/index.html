@@ -10,7 +10,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: black;
+      background: white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -100,10 +100,10 @@
     }
 
     function drawAll() {
-      colorRect(0, 0, canvas.width, canvas.height, 'black'); //clearscreen
+      colorRect(0, 0, canvas.width, canvas.height, 'white'); //clearscreen
       colorCircle(ballX, ballY, 10, 'red'); //drawball
       colorRect(paddleX, canvas.height - PADDLE_DIST_FROM_EDGE,
-        PADDLE_WIDTH, PADDLE_THICKNESS, 'white');
+        PADDLE_WIDTH, PADDLE_THICKNESS, 'black');
     };
 
     function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
