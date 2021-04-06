@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Whack a mole</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+body{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+h2{
+  display:inline-block;
+  line-height:0;
+}
+.square {
+  width: 150px;
+  height: 150px;
+  border-style: solid;
+  border-color: black;
+}
+
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  width: 500px;
+  height: 455px;
+}
+
+.mole {
+  background-image: url('mole.jpg');
+  background-size: cover;
+}
+  </style>
+  <body>
+      <h1>Whack a mole!</h1>
+        <h2>Your score:</h2>
+        <h2 id="score">0</h2>
+
+        <h2>Seconds left:</h2>
+         <h2 id="time-left">60</h2>
+
+      <div class="grid">
+        <div class="square" id="1"></div>
+        <div class="square" id="2"></div>
+        <div class="square" id="3"></div>
+        <div class="square" id="4"></div>
+        <div class="square" id="5"></div>
+        <div class="square" id="6"></div>
+        <div class="square" id="7"></div>
+        <div class="square" id="8"></div>
+        <div class="square" id="9"></div>
+      </div>
+  </body>
+  <script>
+const square = document.querySelectorAll('.square')
+const mole = document.querySelector('.mole')
+const timeLeft = document.querySelector('#time-left')
+let score = document.querySelector('#score')
+
+//randomesquare setup
+function randomSquare() {
+  square.forEach(className => {
+    className.classList.remove('mole')
+  })
+  let randomPosition = square[Math.floor(Math.random() * 9)]//0~8까지랜덤
+  randomPosition.classList.add('mole')
+
+  //assign the id of the randomPosition to hitPosition for us to use later
+  hitPosition = randomPosition.id
+}
+
+//mouseup event : score
+let result = 0
+
+square.forEach(id => {
+  id.addEventListener('mouseup', () => { //mouseup: 마우스를 눌렀다놓으면 작동
+    if(id.id === hitPosition){ //각square의 id가 randomposition id와 같으면
+      result = result + 1
+      score.textContent = result
+
+    }
+  })
+})
+
+//movemole
+function moveMole() {
+  let moleTime = null
+  moleTime = setInterval(randomSquare, 500)
+}
+
+moveMole()
+
+//timer
+
+let currentTime = timeLeft.textContent
+function countDown() {
+  currentTime--//타이머 작동시킨다
+  timeLeft.textContent = currentTime
+
+  if(currentTime === 0 ) {
+    clearInterval(timerId)//setinterval멈춘다
+    alert(`시간이 초과되었어요 ! 당신의 점수는 + ${result}입니다!`)
+  }
+}
+let timerId = setInterval(countDown, 1000)
+
+  </script>
+</html>
