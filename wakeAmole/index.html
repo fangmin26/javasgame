@@ -126,11 +126,13 @@ function moveMole() {
 
 //timer
 
-let currentTime = timeLeft.textContent;
-let timerId = setInterval(countDown, 1000);
+
 
 
 function countDown() {
+  let currentTime = timeLeft.textContent;
+let timerId = setInterval(countDown, 1000);
+
   currentTime--//타이머 작동시킨다
   timeLeft.textContent = currentTime;
 
