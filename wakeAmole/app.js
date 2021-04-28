@@ -1,7 +1,8 @@
-const square = document.querySelectorAll('.square')
-const mole = document.querySelectorAll('.mole')
-const timeLeft = document.querySelector('#time-left')
-let score = document.querySelector('#score')
+const square = document.querySelectorAll('.square');
+const mole = document.querySelectorAll('.mole');
+const timeLeft = document.querySelector('#time-left');
+let score = document.querySelector('#score');
+let $result = ducoment.querySelector("#result")
 
 let result = 0
 let currentTime = timeLeft.textContent
@@ -41,8 +42,8 @@ function countDown() {
   timeLeft.textContent = currentTime
 
   if(currentTime === 0 ) {
-    clearInterval(timerId)
-    alert('GAME OVER! Your final score is' + result)
+    clearInterval(timerId);
+    $result.textContent= `GAME OVER! Your final score is${result}`
   }
 }
 

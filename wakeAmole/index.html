@@ -44,6 +44,7 @@ h2{
 
         <h2>Seconds left:</h2>
          <h2 id="time-left">60</h2>
+         <h2 id="result"></h2>
 
       <div class="grid">
         <div class="square" id="1"></div>
@@ -105,7 +106,7 @@ function countDown() {
 
   if(currentTime === 0 ) {
     clearInterval(timerId)//setinterval멈춘다
-    alert(`시간이 초과되었어요 ! 당신의 점수는 + ${result}입니다!`)
+    timeLeft.textContent = `시간이 초과되었어요 ! 당신의 점수는 ${result}입니다!`;
   }
 }
 let timerId = setInterval(countDown, 1000)
