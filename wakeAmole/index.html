@@ -12,10 +12,29 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position:relative;
 }
 h2{
   display:inline-block;
   line-height:0;
+}
+button{
+  position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    width: 80px;
+    height: 40px;
+    background:#000;
+    border-radius: 10%;
+    border-style: none;
+    color:#fff;
+    cursor:pointer;
+    transition:.5s all ease;
+}
+button:hover{
+  background:#ccc;
+  color:#000;
 }
 .square {
   width: 150px;
@@ -46,6 +65,7 @@ h2{
         <h2>Seconds left:</h2>
          <h2 id="time-left">60</h2>
          <h2 id="result"></h2>
+         <button>START</button>
 
       <div class="grid">
         <div class="square" id="1"></div>
@@ -60,10 +80,17 @@ h2{
       </div>
   </body>
   <script>
-const square = document.querySelectorAll('.square')
-const mole = document.querySelector('.mole')
-const timeLeft = document.querySelector('#time-left')
-let score = document.querySelector('#score')
+const square = document.querySelectorAll('.square');
+const mole = document.querySelector('.mole');
+const timeLeft = document.querySelector('#time-left');
+let score = document.querySelector('#score');
+let button = document.querySelector('button');
+
+button.addEventListener('click',function(){
+  randomSquare();
+  moveMole();
+  countDown();
+});
 
 //randomesquare setup
 function randomSquare() {
@@ -85,7 +112,6 @@ square.forEach(id => {
     if(id.id === hitPosition){ //각square의 id가 randomposition id와 같으면
       result = result + 1
       score.textContent = result
-
     }
   })
 })
@@ -96,21 +122,24 @@ function moveMole() {
   moleTime = setInterval(randomSquare, 500)
 }
 
-moveMole()
+// moveMole();
 
 //timer
 
-let currentTime = timeLeft.textContent
+let currentTime = timeLeft.textContent;
+let timerId = setInterval(countDown, 1000);
+
+
 function countDown() {
   currentTime--//타이머 작동시킨다
-  timeLeft.textContent = currentTime
+  timeLeft.textContent = currentTime;
 
   if(currentTime === 0 ) {
     clearInterval(timerId)//setinterval멈춘다
     timeLeft.textContent = `시간이 초과되었어요 ! 당신의 점수는 ${result}입니다!`;
   }
 }
-let timerId = setInterval(countDown, 1000)
+
 
   </script>
 </html>
